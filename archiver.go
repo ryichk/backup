@@ -2,12 +2,14 @@ package backup
 
 import (
 	"archive/zip"
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
 )
 
 type Archiver interface {
+	DestFmt() func(int64) string
 	Archive(src, dest string) error
 }
 
@@ -15,6 +17,12 @@ type zipper struct{}
 
 // ZIPはファイルの圧縮とその解除にZIP形式を利用するArchiver
 var ZIP Archiver = (*zipper)(nil)
+
+func (z *zipper) DestFmt() func(int64) string {
+	return func(i int64) string {
+		return fmt.Sprintf("%d.zip", i)
+	}
+}
 
 func (z *zipper) Archive(src, dest string) error {
 	// 保存先のディレクトリが存在することを確認
