@@ -1,5 +1,9 @@
 .DS_Store
 
 # compile
+cmds/backup/backup
+
+# filedb
+cmds/backup/backupdata
 
 .env
