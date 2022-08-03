@@ -2,8 +2,13 @@
 
 # compile
 cmds/backup/backup
+cmds/backupd/backupd
 
 # filedb
 cmds/backup/backupdata
+
+# test files
+cmds/backupd/archive
+cmds/backupd/test*
 
 .env
